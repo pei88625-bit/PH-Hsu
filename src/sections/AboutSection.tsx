@@ -5,214 +5,57 @@ import { useState } from 'react';
 import { useLang } from '../LangContext';
 import { SKILLS, CERTIFICATES, ABOUT_CONTENT, type PublicationItem } from '../data';
 
+import ijss24tImage from '../assets/IJSS24T.png';
+import iatImage from '../assets/IAT.png';
+import rqdImage from '../assets/RQD.png';
+import cImage from '../assets/C.png';
+
 const PublicationVisual = ({ type, lang }: { type: PublicationItem['visualType']; lang: 'zh' | 'en' }) => {
   const isZh = lang === 'zh';
 
+  let imgSrc = '';
+  let altText = '';
+  let caption = '';
+
   switch (type) {
     case 'supply-chain':
-      return (
-        <div className="relative w-full h-full flex flex-col justify-center items-center gap-6 p-4">
-          <div className="text-center font-bold text-xs uppercase tracking-widest text-brand-500 mb-2">
-            {isZh ? '雙通路綠色供應鏈架構' : 'Dual-Channel Green Supply Chain'}
-          </div>
-          
-          {/* Cap & Trade Regulatory Box */}
-          <div className="w-full max-w-[280px] p-3 bg-brand-950 text-white rounded-2xl text-[10px] text-center shadow-lg border border-brand-800 flex items-center justify-center gap-2 animate-pulse">
-            <i className="fas fa-smog text-brand-400"></i>
-            <span>{isZh ? '碳交易與減排政策限制' : 'Carbon Cap-and-Trade Policy'}</span>
-          </div>
-
-          <div className="flex items-center justify-between w-full max-w-[320px] relative">
-            {/* Manufacturer Node */}
-            <div className="z-10 w-24 h-24 rounded-3xl bg-white border border-brand-200 flex flex-col items-center justify-center p-2 text-center shadow-md hover:border-brand-500 hover:shadow-lg transition-all group">
-              <div className="w-8 h-8 rounded-xl bg-brand-50 flex items-center justify-center text-brand-950 mb-1 group-hover:scale-110 transition-transform">
-                <i className="fas fa-industry"></i>
-              </div>
-              <span className="text-[10px] font-bold">{isZh ? '製造商' : 'Manufacturer'}</span>
-              <span className="text-[8px] text-brand-500 mt-0.5">{isZh ? '綠色產品投資' : 'Green Inv.'}</span>
-            </div>
-
-            {/* Channels flow lines */}
-            <div className="absolute inset-0 flex flex-col justify-center gap-6 pointer-events-none">
-              {/* Direct Path line */}
-              <div className="h-[2px] bg-gradient-to-r from-brand-300 via-brand-500 to-brand-300 w-full relative">
-                <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-1.5 h-1.5 bg-brand-600 rounded-full animate-[ping_1.5s_infinite]"></div>
-                <span className="absolute -top-4 left-1/2 -translate-x-1/2 text-[7px] font-bold text-brand-500 uppercase tracking-widest bg-white/80 px-1 rounded">
-                  {isZh ? '直銷通路' : 'Direct'}
-                </span>
-              </div>
-              {/* Retail Path line */}
-              <div className="h-[2px] bg-gradient-to-r from-brand-300 via-brand-500 to-brand-300 w-full relative">
-                <div className="absolute top-1/2 left-3/4 -translate-y-1/2 w-1.5 h-1.5 bg-brand-600 rounded-full animate-[ping_1.5s_infinite_delay-750ms]"></div>
-                <span className="absolute -bottom-4 left-1/2 -translate-x-1/2 text-[7px] font-bold text-brand-500 uppercase tracking-widest bg-white/80 px-1 rounded">
-                  {isZh ? '零售通路' : 'Retailer'}
-                </span>
-              </div>
-            </div>
-
-            {/* Customers Node */}
-            <div className="z-10 w-24 h-24 rounded-3xl bg-white border border-brand-200 flex flex-col items-center justify-center p-2 text-center shadow-md hover:border-brand-500 hover:shadow-lg transition-all group">
-              <div className="w-8 h-8 rounded-xl bg-brand-50 flex items-center justify-center text-brand-950 mb-1 group-hover:scale-110 transition-transform">
-                <i className="fas fa-users"></i>
-              </div>
-              <span className="text-[10px] font-bold">{isZh ? '市場/消費者' : 'Market'}</span>
-              <span className="text-[8px] text-brand-500 mt-0.5">{isZh ? '綠色偏好' : 'Green Pref.'}</span>
-            </div>
-          </div>
-        </div>
-      );
-
+      imgSrc = ijss24tImage;
+      altText = 'Dual-Channel Green Supply Chain Model';
+      caption = isZh ? '雙通路綠色供應鏈模型圖' : 'Dual-Channel Green Supply Chain Model';
+      break;
     case 'remanufacturing':
-      return (
-        <div className="relative w-full h-full flex flex-col justify-center items-center gap-4 p-4">
-          <div className="text-center font-bold text-xs uppercase tracking-widest text-brand-500 mb-2">
-            {isZh ? '產品再製造循環模型' : 'Remanufacturing Circular Model'}
-          </div>
-
-          <div className="relative w-48 h-48 flex items-center justify-center">
-            {/* Circular Path Arrows using SVG */}
-            <svg className="absolute w-full h-full animate-[spin_20s_linear_infinite]" viewBox="0 0 100 100">
-              <circle cx="50" cy="50" r="38" fill="none" stroke="#e0f2fe" strokeWidth="2" strokeDasharray="6 6" />
-              <path d="M 50 12 A 38 38 0 0 1 88 50" fill="none" stroke="#0ea5e9" strokeWidth="3" />
-              <path d="M 88 50 A 38 38 0 0 1 50 88" fill="none" stroke="#0ea5e9" strokeWidth="3" />
-              <path d="M 50 88 A 38 38 0 0 1 12 50" fill="none" stroke="#0ea5e9" strokeWidth="3" />
-              <path d="M 12 50 A 38 38 0 0 1 50 12" fill="none" stroke="#0ea5e9" strokeWidth="3" />
-            </svg>
-
-            {/* Core Node */}
-            <div className="absolute z-10 w-20 h-20 rounded-full bg-brand-950 text-white flex flex-col items-center justify-center p-2 text-center shadow-lg border border-brand-800">
-              <i className="fas fa-recycle text-brand-400 text-lg mb-1 animate-spin"></i>
-              <span className="text-[8px] font-bold uppercase tracking-widest">{isZh ? '閉環優化' : 'Closed Loop'}</span>
-            </div>
-
-            {/* Top Node: New Production */}
-            <div className="absolute top-0 w-16 h-10 rounded-xl bg-white border border-brand-100 shadow-sm flex flex-col items-center justify-center text-center">
-              <span className="text-[8px] font-bold">{isZh ? '新生產' : 'New Mfg'}</span>
-              <span className="text-[6px] text-brand-500">{isZh ? '碳排放監測' : 'CO2 Monitored'}</span>
-            </div>
-
-            {/* Right Node: Market */}
-            <div className="absolute right-0 w-16 h-10 rounded-xl bg-white border border-brand-100 shadow-sm flex flex-col items-center justify-center text-center">
-              <span className="text-[8px] font-bold">{isZh ? '消費市場' : 'Market'}</span>
-              <span className="text-[6px] text-brand-500">{isZh ? '產品銷售' : 'Sales'}</span>
-            </div>
-
-            {/* Bottom Node: Used Collection */}
-            <div className="absolute bottom-0 w-16 h-10 rounded-xl bg-white border border-brand-100 shadow-sm flex flex-col items-center justify-center text-center">
-              <span className="text-[8px] font-bold">{isZh ? '回收回收' : 'Collection'}</span>
-              <span className="text-[6px] text-brand-500">{isZh ? '回收率優化' : 'Rate Opt.'}</span>
-            </div>
-
-            {/* Left Node: Remanufacturing */}
-            <div className="absolute left-0 w-16 h-10 rounded-xl bg-white border border-brand-100 shadow-sm flex flex-col items-center justify-center text-center">
-              <span className="text-[8px] font-bold">{isZh ? '再製造' : 'Remfg'}</span>
-              <span className="text-[6px] text-brand-500">{isZh ? '省材降碳' : 'Low Carbon'}</span>
-            </div>
-          </div>
-        </div>
-      );
-
+      imgSrc = iatImage;
+      altText = 'Remanufacturing Circular Model';
+      caption = isZh ? '再製造循環模型圖' : 'Remanufacturing Circular Model';
+      break;
     case 'rework':
-      return (
-        <div className="relative w-full h-full flex flex-col justify-center items-center gap-4 p-4">
-          <div className="text-center font-bold text-xs uppercase tracking-widest text-brand-500 mb-2">
-            {isZh ? '生產品質檢驗與返工流程' : 'Mfg Quality & Rework Flow'}
-          </div>
-
-          <div className="flex flex-col items-center gap-4 w-full max-w-[320px]">
-            {/* Step 1: Production */}
-            <div className="w-36 py-2 bg-white border border-brand-200 rounded-xl text-center shadow-sm text-[10px] font-semibold flex items-center justify-center gap-2">
-              <i className="fas fa-pallet text-brand-500"></i>
-              <span>{isZh ? '批量生產製造' : 'Batch Production'}</span>
-            </div>
-
-            {/* Arrow */}
-            <div className="w-[1.5px] h-6 bg-brand-300 relative">
-              <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1.5 h-1.5 border-b-[1.5px] border-r-[1.5px] border-brand-400 rotate-45"></div>
-            </div>
-
-            {/* Step 2: Quality Inspection */}
-            <div className="w-40 py-2.5 bg-brand-950 text-white rounded-2xl text-center shadow-md text-[10px] font-bold flex flex-col items-center gap-1 border border-brand-800">
-              <div className="flex items-center gap-1.5">
-                <i className="fas fa-clipboard-check text-brand-400"></i>
-                <span>{isZh ? '品質判定節點' : 'Quality Inspection'}</span>
-              </div>
-              <span className="text-[8px] text-brand-400 font-light">{isZh ? '判定良品/瑕疵品' : 'Good / Defective'}</span>
-            </div>
-
-            {/* Split Paths */}
-            <div className="flex justify-between w-full relative px-2">
-              {/* Defective Path */}
-              <div className="flex flex-col items-center gap-2 w-1/2">
-                <div className="text-[8px] font-bold text-red-500 uppercase tracking-wider">{isZh ? '不合格 (瑕疵)' : 'Defective'}</div>
-                <div className="w-24 py-2 bg-red-50 border border-red-200 rounded-xl text-center text-[9px] font-medium text-red-700 flex items-center justify-center gap-1 shadow-sm hover:scale-105 transition-transform">
-                  <i className="fas fa-tools text-red-400"></i>
-                  <span>{isZh ? '返工程序' : 'Rework Process'}</span>
-                </div>
-                <span className="text-[7px] text-red-500 font-light text-center">{isZh ? '返工碳排放成本' : 'Rework Carbon Cost'}</span>
-              </div>
-
-              {/* Good Path */}
-              <div className="flex flex-col items-center gap-2 w-1/2">
-                <div className="text-[8px] font-bold text-emerald-600 uppercase tracking-wider">{isZh ? '合格 (良品)' : 'Good'}</div>
-                <div className="w-24 py-2 bg-emerald-50 border border-emerald-200 rounded-xl text-center text-[9px] font-medium text-emerald-700 flex items-center justify-center gap-1 shadow-sm hover:scale-105 transition-transform">
-                  <i className="fas fa-box text-emerald-400"></i>
-                  <span>{isZh ? '產品出貨銷售' : 'Shipment / Sale'}</span>
-                </div>
-                <span className="text-[7px] text-emerald-600 font-light text-center">{isZh ? '無多餘碳稅負擔' : 'No Extra Tax'}</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      );
-
+      imgSrc = rqdImage;
+      altText = 'Mfg Quality & Rework Flow';
+      caption = isZh ? '品質檢驗與返工流程圖' : 'Mfg Quality & Rework Flow';
+      break;
     case 'green-investment':
-      return (
-        <div className="relative w-full h-full flex flex-col justify-center items-center gap-5 p-4">
-          <div className="text-center font-bold text-xs uppercase tracking-widest text-brand-500 mb-2">
-            {isZh ? '環保設備投資與減排決策' : 'Eco-Equipment Investment'}
-          </div>
-
-          <div className="flex items-center justify-center gap-4 w-full max-w-[320px]">
-            {/* Box 1: Capital */}
-            <div className="w-24 h-24 rounded-2xl bg-white border border-brand-200 shadow-sm flex flex-col items-center justify-center text-center p-2 group hover:border-brand-500 transition-colors">
-              <div className="w-8 h-8 rounded-xl bg-brand-50 flex items-center justify-center text-brand-950 mb-1">
-                <i className="fas fa-coins text-brand-500"></i>
-              </div>
-              <span className="text-[9px] font-bold">{isZh ? '環保投資' : 'Capital Inv.'}</span>
-              <span className="text-[7px] text-brand-500 mt-0.5">{isZh ? '設備採購資金' : 'Equipment Funding'}</span>
-            </div>
-
-            {/* Plus Icon */}
-            <div className="text-brand-400 font-bold text-lg animate-pulse">+</div>
-
-            {/* Box 2: Eco-Equipment */}
-            <div className="w-24 h-24 rounded-2xl bg-brand-950 text-white shadow-md flex flex-col items-center justify-center text-center p-2 border border-brand-800">
-              <div className="w-8 h-8 rounded-xl bg-brand-900 flex items-center justify-center text-brand-400 mb-1">
-                <i className="fas fa-leaf text-brand-400"></i>
-              </div>
-              <span className="text-[9px] font-bold">{isZh ? '節能減排設備' : 'Eco Equipment'}</span>
-              <span className="text-[7px] text-brand-400 mt-0.5">{isZh ? '降低製程碳足跡' : 'Reduces Carbon'}</span>
-            </div>
-
-            {/* Equal Arrow */}
-            <div className="text-brand-400 font-bold text-lg animate-bounce">→</div>
-
-            {/* Box 3: Savings */}
-            <div className="w-24 h-24 rounded-2xl bg-emerald-50 border border-emerald-200 shadow-sm flex flex-col items-center justify-center text-center p-2">
-              <div className="w-8 h-8 rounded-xl bg-emerald-100 flex items-center justify-center text-emerald-950 mb-1">
-                <i className="fas fa-chart-line text-emerald-600"></i>
-              </div>
-              <span className="text-[9px] font-bold text-emerald-800">{isZh ? '碳稅減免' : 'Tax Savings'}</span>
-              <span className="text-[7px] text-emerald-600 mt-0.5">{isZh ? '提升長期利潤' : 'Increases Profits'}</span>
-            </div>
-          </div>
-        </div>
-      );
-
+      imgSrc = cImage;
+      altText = 'Eco-Equipment Investment Model';
+      caption = isZh ? '環保設備投資與減排決策模型圖' : 'Eco-Equipment Investment Model';
+      break;
     default:
       return null;
   }
+
+  return (
+    <div className="relative w-full h-full flex flex-col justify-center items-center gap-3">
+      <div className="text-center font-bold text-xs uppercase tracking-widest text-brand-500 mb-1">
+        {caption}
+      </div>
+      <div className="w-full bg-white border border-brand-100/80 rounded-2xl p-3 shadow-sm hover:shadow-md transition-shadow group overflow-hidden flex items-center justify-center">
+        <img
+          src={imgSrc}
+          alt={altText}
+          className="w-full h-auto max-h-[240px] md:max-h-[380px] object-contain rounded-xl group-hover:scale-[1.02] transition-transform duration-300"
+        />
+      </div>
+    </div>
+  );
 };
 
 export const AboutSection = () => {
@@ -235,9 +78,9 @@ export const AboutSection = () => {
                   <div key={school.name + index} className="relative">
                     <div className={`absolute -left-[37px] top-1.5 w-4 h-4 bg-white border-4 ${index === 0 ? 'border-brand-950' : 'border-brand-200'} rounded-full z-10`}></div>
                     
-                    <div className="flex items-start justify-between gap-3 mb-1">
+                    <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1 sm:gap-3 mb-1">
                       <h4 className="text-xl md:text-2xl font-bold text-brand-950 leading-snug min-w-0">{school.name}</h4>
-                      <span className="text-[10px] md:text-xs font-bold text-brand-500 uppercase tracking-wider whitespace-nowrap flex-shrink-0 mt-1.5">{school.period}</span>
+                      <span className="text-[10px] md:text-xs font-bold text-brand-500 uppercase tracking-wider whitespace-nowrap flex-shrink-0 mt-1 sm:mt-1.5">{school.period}</span>
                     </div>
 
                     <div className="flex flex-wrap items-center gap-2 mb-4">
@@ -286,9 +129,9 @@ export const AboutSection = () => {
                     </div>
                     
                     {cert.tags && cert.tags.length > 0 && (
-                      <div className="flex flex-wrap gap-2 pt-2 md:pt-0 md:pl-4 md:border-l border-brand-100">
+                      <div className="flex flex-col items-start gap-2 pt-3 md:pt-0 md:pl-6 md:border-l border-brand-100 w-full md:w-auto">
                         {cert.tags.map(tag => (
-                          <span key={tag} className="px-3 py-1.5 bg-brand-50 border border-brand-200/60 text-brand-950 rounded-xl text-xs font-bold shadow-sm">
+                          <span key={tag} className="px-3 py-1.5 bg-brand-50 border border-brand-200/60 text-brand-950 rounded-xl text-xs font-bold shadow-sm whitespace-nowrap">
                             {tag}
                           </span>
                         ))}
@@ -392,11 +235,11 @@ export const AboutSection = () => {
       {/* ── Modal Window ── */}
       {selectedPub && (
         <div 
-          className="fixed inset-0 z-[100] flex items-center justify-center bg-brand-950/40 backdrop-blur-md p-4 md:p-6 transition-all animate-fade-in" 
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-brand-950/40 backdrop-blur-md p-4 md:p-6 overflow-y-auto transition-all animate-fade-in" 
           onClick={() => setSelectedPub(null)}
         >
           <div 
-            className="relative w-full max-w-5xl rounded-[2.5rem] md:rounded-[3rem] bg-white border border-brand-100 shadow-2xl overflow-hidden flex flex-col md:flex-row animate-scale-up"
+            className="relative w-full max-w-5xl rounded-[2.5rem] md:rounded-[3rem] bg-white border border-brand-100 shadow-2xl overflow-hidden flex flex-col md:flex-row md:h-[80vh] max-h-[90vh] md:max-h-[720px] animate-scale-up"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Close Button */}
@@ -409,12 +252,12 @@ export const AboutSection = () => {
             </button>
 
             {/* Left Panel: Diagram / Architecture Visualization */}
-            <div className="w-full md:w-1/2 p-8 md:p-12 bg-brand-50/55 flex flex-col justify-center items-center border-b md:border-b-0 md:border-r border-brand-100/50 min-h-[320px] md:min-h-[440px]">
+            <div className="w-full md:w-1/2 p-8 md:p-12 bg-brand-50/55 flex flex-col justify-center items-center border-b md:border-b-0 md:border-r border-brand-100/50 min-h-[320px] md:min-h-0 flex-shrink-0">
               <PublicationVisual type={selectedPub.visualType} lang={lang} />
             </div>
 
             {/* Right Panel: Abstract & Details */}
-            <div className="w-full md:w-1/2 p-8 md:p-12 flex flex-col justify-between gap-6">
+            <div className="w-full md:w-1/2 p-8 md:p-12 flex flex-col justify-between gap-6 overflow-y-auto md:max-h-full">
               <div className="space-y-4">
                 <div className="inline-block px-3 py-1 text-[9px] font-bold tracking-[0.2em] uppercase rounded-full text-brand-500 border border-brand-200">
                   {selectedPub.id.startsWith('paper') 
