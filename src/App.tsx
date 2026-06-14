@@ -25,7 +25,7 @@ const App = () => {
       <nav id="navbar" className="fixed top-0 left-0 right-0 z-50 glass-nav">
         <div id="scroll-progress" className="absolute bottom-0 left-0 h-[2px] bg-brand-950 w-0 transition-all"></div>
         <div className="container px-6 py-4 mx-auto max-w-7xl flex items-center justify-between">
-          <a href="#home" className="text-xl font-bold tracking-tighter">JOHNNY CHEN</a>
+          <a href="#home" className="text-xl font-bold tracking-tighter">Pei-Hsuan Hsu</a>
 
           <div className="hidden md:flex items-center gap-2">
             {navItems.map(item => (
@@ -77,7 +77,7 @@ const App = () => {
       <ContactSection />
 
       <footer className="py-10 bg-brand-950 border-t border-white/5 text-center text-white/20 text-[9px] tracking-widest uppercase">
-        © {new Date().getFullYear()} Johnny Chen.
+        © {new Date().getFullYear()} Pei-Hsuan Hsu.
       </footer>
     </div>
   );

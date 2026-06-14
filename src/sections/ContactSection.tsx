@@ -8,7 +8,8 @@ export const ContactSection = () => {
 
   const copyEmail = () => {
     if (copied) return;
-    navigator.clipboard.writeText('johnny50327@gmail.com').then(() => {
+    // 已將舊 Email 改為妳的專案 Email
+    navigator.clipboard.writeText('pei88625@gmail.com').then(() => {
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     });
@@ -29,14 +30,11 @@ export const ContactSection = () => {
         >
           {copied
             ? <span className="flex items-center gap-3"><i className="fas fa-check-circle text-lg md:text-xl"></i> EMAIL COPIED!</span>
-            : 'johnny50327@gmail.com'
+            : 'pei88625@gmail.com'
           }
         </button>
 
-        <div className="mt-12 md:mt-16 flex justify-center gap-6 md:gap-8 text-white/40 text-xl md:text-2xl">
-          <a href="https://github.com/imlacha" target="_blank" className="hover:text-white hover:scale-110 hover:-translate-y-1 transition-all"><i className="fab fa-github"></i></a>
-          <a href="https://www.linkedin.com/in/shi-zong-chen-950486311/" target="_blank" className="hover:text-white hover:scale-110 hover:-translate-y-1 transition-all"><i className="fab fa-linkedin"></i></a>
-        </div>
+        {/* 已完全移除舊的 GitHub 與 LinkedIn 區塊 */}
       </div>
     </section>
   );
